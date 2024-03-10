@@ -46,7 +46,7 @@ jobs:
       run: ./build/gerefi_simulator 10
 
     - name: Upload Linux built simulator
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: gerefi_simulator_linux
         path: ./simulator/build/gerefi_simulator

@@ -497,42 +497,42 @@ jobs:
 
     - name: Upload build elf
       if: ${{ env.partial == 'true' }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: gerefi_${{matrix.build-target}}.elf
         path: ./firmware/build/gerefi.elf
 
     - name: Upload build bin
       if: ${{ env.partial == 'true' }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: gerefi_${{matrix.build-target}}.bin
         path: ./firmware/deliver/gerefi*.bin
 
     - name: Upload build hex
       if: ${{ env.partial == 'true' }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: gerefi_${{matrix.build-target}}.hex
         path: ./firmware/deliver/gerefi*.hex
 
     - name: Upload build dfu
       if: ${{ env.partial == 'true' }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: gerefi_${{matrix.build-target}}.dfu
         path: ./firmware/deliver/gerefi*.dfu
 
     - name: Upload bundle
       if: ${{ env.full == 'true' }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: gerefi_bundle_${{matrix.build-target}}.zip
         path: ./artifacts/gerefi_bundle*.zip
 
     - name: Upload autoupdate bundle
       if: ${{ env.full == 'true' }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: gerefi_bundle_${{matrix.build-target}}_autoupdate.zip
         path: ./artifacts/gerefi_bundle_${{matrix.build-target}}_autoupdate.zip
