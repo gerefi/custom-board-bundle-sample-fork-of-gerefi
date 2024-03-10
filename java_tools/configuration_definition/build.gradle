@@ -1,0 +1,48 @@
+plugins {
+    id 'java-library'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'antlr'
+}
+
+apply from: '../../java_tools/dependencies.gradle'
+
+defaultTasks 'shadowJar'
+
+dependencies {
+    api project(':config_definition_base')
+    implementation project(':models')
+    antlr global_libs.antlr
+}
+
+shadowJar {
+    /*
+     to exclude suffix '-all'
+     in resulting archive file name
+    */
+    archiveBaseName = 'ConfigDefinition'
+    archiveClassifier = ''
+
+    destinationDirectory = file( '$rootDir/../..' )
+    manifest {
+        attributes(
+                'Main-Class': 'com.gerefi.ConfigDefinition'
+        )
+    }
+    /*
+     to keep only classes from logging
+     and loggin-api as in build.xml
+    */
+    dependencies {
+        exclude(dependency(global_libs.jsr305))
+        exclude(dependency(global_libs.junit))
+        exclude(dependency(global_libs.annotations))
+        exclude(dependency('com.ibm.icu:icu4j:.*'))
+    }
+}
+
+test {
+	testLogging {
+		events "failed"
+		exceptionFormat "full"
+	}
+}

@@ -1,0 +1,52 @@
+name: Simulator
+
+on: [push, pull_request]
+
+jobs:
+  # This is just to ensure the simulator compiles on Linux
+  build-simulator:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Checkout Submodules
+      run: |
+        git submodule update --init --depth=1 firmware/ChibiOS
+        git submodule update --init --depth=1 firmware/ChibiOS-Contrib
+        git submodule update --init --depth=1 firmware/libfirmware
+        git submodule update --init --depth=1 firmware/ext/lua
+        git submodule update --init --depth=1 firmware/controllers/lua/luaaa
+        git submodule update --init --depth=1 firmware/controllers/can/wideband_firmware
+
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '8'
+
+    - name: Print GCC version
+      working-directory: .
+      run: gcc -v
+
+    - name: Install multilib
+      run: |
+        sudo bash misc/actions/add-ubuntu-latest-apt-mirrors.sh
+        sudo apt-get install gcc-multilib g++-multilib mtools dosfstools zip
+
+    - name: Generate Configs, Enums & Live Documentation
+      working-directory: ./firmware/
+      run: ./gen_default_everything.sh
+
+    - name: Compile Linux Simulator
+      working-directory: ./simulator/
+      run: ./compile.sh
+
+    - name: Run Linux Simulator for 10 seconds
+      working-directory: ./simulator/
+      run: ./build/gerefi_simulator 10
+
+    - name: Upload Linux built simulator
+      uses: actions/upload-artifact@v3
+      with:
+        name: gerefi_simulator_linux
+        path: ./simulator/build/gerefi_simulator

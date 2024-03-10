@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+defaultTasks 'shadowJar'
+
+jar {
+    mainClassName = 'gerefi.GccMapReader'
+
+    destinationDirectory = file( '$rootDir/../..' )
+    manifest {
+        attributes(
+            'Main-Class': 'gerefi.GccMapReader'
+        )
+    }
+}

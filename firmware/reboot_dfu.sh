@@ -1,0 +1,1 @@
+java -jar ../java_console_binary/gerefi_console.jar reboot_dfu
