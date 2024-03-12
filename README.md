@@ -15,10 +15,6 @@ See [check.c](https://github.com/gerefi/gerefi/blob/master/firmware/check.c) for
 
 Current binaries are always available on our [build server](http://gerefi.com/build_server/)
 
-[![paypal](https://img.shields.io/badge/%E2%99%A5%EF%B8%8Fdonate-orange)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6YSSN35GWYS3A)
-
-[shop.gerefi.com](https://www.shop.gerefi.com/)
-
 # Cloning the repository
 `git clone https://github.com/gerefi/gerefi.git`
 Important note - we now use submodules:
@@ -37,13 +33,12 @@ Important note - we now use submodules:
 
 # External Links
 
- * [Forum](http://gerefi.com/forum)
  * [Documentation](https://github.com/gerefi/gerefi/wiki)
  * [Doxygen documentation](http://gerefi.com/docs/html)
  * [General source code Q&A](http://gerefi.com/forum/viewtopic.php?f=5&t=10)
  * [Facebook](https://www.facebook.com/gerefiECU)
- * [YouTube](https://www.youtube.com/user/gerefi)
- * [Patreon](https://www.patreon.com/gerefi)
+
+
 
 # Building the Code
 Check out https://gerefi.com/forum/viewtopic.php?f=5&t=9
